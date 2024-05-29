@@ -7,15 +7,29 @@ import PhoneNumber from "./components/PhoneNumber";
 import SalaryIndication from "./components/SalaryIndication";
 import Summary from "./components/Summary";
 
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CheckCircleIcon,
+  Bars3Icon,
+} from "@heroicons/react/24/solid";
+
 export type FormState = {
   fullName: string;
   email: string;
   phoneNumber: string;
   salaryRange: string;
-  error: string;
 };
 
 export type SetFormField = (field: keyof FormState, value: string) => void;
+
+const formSteps = [
+  { component: FullName, key: "fullName" },
+  { component: Email, key: "email" },
+  { component: PhoneNumber, key: "phoneNumber" },
+  { component: SalaryIndication, key: "salaryRange" },
+  { component: Summary, key: "summary" },
+];
 
 function App() {
   const [formState, setFormState] = useState<FormState>({
@@ -23,7 +37,6 @@ function App() {
     email: "",
     phoneNumber: "",
     salaryRange: "",
-    error: "",
   });
 
   const [currentStep, setCurrentStep] = useState(1);
