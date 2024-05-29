@@ -26,14 +26,14 @@ function PhoneNumber({ formState, setFormField }: PhoneNumberProps) {
       <div className="flex flex-col">
         <label
           htmlFor="phoneNumber"
-          className="mb-2 font-bold text-lg text-left"
+          className="text-3xl my-10 font-bold text-center"
         >
           Phone number
         </label>
         <input
           type="email"
           id="email"
-          className="border-2 border-gray-300 p-2 rounded-md"
+          className="border-2 border-gray-300 bg-transparent p-2 rounded-md"
           value={formState.phoneNumber}
           onChange={(e) => setFormField("phoneNumber", e.target.value)}
           onBlur={() => setIsPhoneNumberTouched(true)}
