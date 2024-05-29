@@ -26,8 +26,8 @@ function Email({ formState, setFormField }: EmailProps) {
           type="email"
           id="email"
           className="border-2 border-gray-300 p-2 rounded-md"
-          value={formState.fullName}
-          onChange={(e) => setFormField("fullName", e.target.value)}
+          value={formState.email}
+          onChange={(e) => setFormField("email", e.target.value)}
           onBlur={() => setIsEmailTouched(true)}
         />
 
