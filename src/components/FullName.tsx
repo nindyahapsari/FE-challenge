@@ -33,8 +33,6 @@ function FullName({ formState, setFormField }: FullNameProps) {
         />
         {firstNameError && <p className="text-red-500">{firstNameError}</p>}
       </div>
-
-      <button disabled={!formState.fullName}>Next</button>
     </div>
   );
 }
