@@ -19,13 +19,13 @@ function Email({ formState, setFormField }: EmailProps) {
   return (
     <div className="flex flex-col space-y-4">
       <div className="flex flex-col">
-        <label htmlFor="email" className="mb-2 font-bold text-lg text-left">
+        <label htmlFor="email" className="text-3xl my-10 font-bold text-center">
           Email
         </label>
         <input
           type="email"
           id="email"
-          className="border-2 border-gray-300 p-2 rounded-md"
+          className="border-2 border-gray-300 bg-transparent p-2 rounded-md"
           value={formState.email}
           onChange={(e) => setFormField("email", e.target.value)}
           onBlur={() => setIsEmailTouched(true)}
