@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import "./App.css";
 
+import Navbar from "./components/Navbar";
 import FullName from "./components/FullName";
 import Email from "./components/Email";
 import PhoneNumber from "./components/PhoneNumber";
 import SalaryIndication from "./components/SalaryIndication";
 import Summary from "./components/Summary";
-
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  CheckCircleIcon,
-  Bars3Icon,
-} from "@heroicons/react/24/solid";
+import ProgressButtons from "./components/ProgressButtons";
 
 export type FormState = {
   fullName: string;
@@ -40,7 +35,7 @@ function App() {
   });
 
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 5;
+  const totalSteps = formSteps.length;
 
   const setFormField: SetFormField = (field, value) => {
     setFormState((prevState) => ({
@@ -50,57 +45,43 @@ function App() {
   };
 
   function nextStep() {
-    setCurrentStep((prevStep) => prevStep + 1);
+    if (currentStep < totalSteps) {
+      setCurrentStep((prevStep) => prevStep + 1);
+    }
   }
 
   function prevStep() {
+    if (currentStep === 1) return;
     setCurrentStep((prevStep) => prevStep - 1);
   }
 
   return (
-    <>
-      <>
-        {currentStep === 1 && (
-          <FullName formState={formState} setFormField={setFormField} />
-        )}
+    <div className="flex flex-col justify-center items-center min-h-screen">
+      <div className="flex-grow flex-2 w-full overflow-auto flex flex-col justify-center items-center">
+        <Navbar />
 
-        {currentStep === 2 && (
-          <Email formState={formState} setFormField={setFormField} />
-        )}
-
-        {currentStep === 3 && (
-          <PhoneNumber formState={formState} setFormField={setFormField} />
-        )}
-
-        {currentStep === 4 && (
-          <SalaryIndication formState={formState} setFormField={setFormField} />
-        )}
-
-        {currentStep === 5 && <Summary formState={formState} />}
-
-        <div className="my-3 flex flex-row justify-around">
-          <button
-            className="my-3"
-            disabled={!formState.fullName}
-            onClick={prevStep}
-          >
-            Prev
-          </button>
-          <div className="flex justify-center space-x-2 mx-5">
-            <span>
-              {currentStep} / {totalSteps}
-            </span>
-          </div>
-          <button
-            className="my-3"
-            disabled={!formState.fullName}
-            onClick={nextStep}
-          >
-            Next
-          </button>
+        <div className="w-96 h-80">
+          {formSteps.map((step, index) => {
+            const StepComponent = step.component;
+            return (
+              currentStep === index + 1 && (
+                <StepComponent
+                  formState={formState}
+                  setFormField={setFormField}
+                />
+              )
+            );
+          })}
         </div>
-      </>
-    </>
+      </div>
+
+      <ProgressButtons
+        currentStep={currentStep}
+        totalSteps={totalSteps}
+        nextStep={nextStep}
+        prevStep={prevStep}
+      />
+    </div>
   );
 }
 
