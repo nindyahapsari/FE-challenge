@@ -11,7 +11,7 @@ import SalaryIndication from "../components/SalaryIndication";
 import Summary from "../components/Summary";
 
 describe("App component", () => {
-  test("it should renders dummy logo", () => {
+  test("it should render dummy logo", () => {
     render(<App />);
     const dummyLogo = screen.getByText(/Buena/i);
     expect(dummyLogo).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe("App component", () => {
 
   describe("Form Components", () => {
     describe("FullName component", () => {
-      test("it should renders FullName component with label text", () => {
+      test("it should render FullName component with label text", () => {
         const mockUser = {
           fullName: "Ada Lovelace",
           email: "",
@@ -31,7 +31,7 @@ describe("App component", () => {
         expect(fieldElement).toBeInTheDocument();
       });
 
-      test("calls setFormField on input change", () => {
+      test("it should call setFormField on input change", () => {
         const mockUser = {
           fullName: "",
           email: "",
@@ -50,7 +50,7 @@ describe("App component", () => {
     });
 
     describe("Email component", () => {
-      test("renders Email component with label text", () => {
+      test("it should render Email component with label text", () => {
         const mockUser = {
           email: "test@testmail.com",
           fullName: "",
@@ -64,7 +64,7 @@ describe("App component", () => {
     });
 
     describe("PhoneNumber component", () => {
-      test("renders PhoneNumber component with label text", () => {
+      test("it should render PhoneNumber component with label text", () => {
         const mockUser = {
           email: "",
           fullName: "",
@@ -78,7 +78,7 @@ describe("App component", () => {
     });
 
     describe("SalaryIndication component", () => {
-      test("renders SalaryIndication component with label text", () => {
+      test("it should render SalaryIndication component with label text", () => {
         const mockUser = {
           email: "",
           fullName: "",
@@ -91,7 +91,7 @@ describe("App component", () => {
       });
     });
 
-    describe("Sumarry component", () => {
+    describe("Summary component", () => {
       const mockUser = {
         email: "user@testmail.com",
         fullName: "Nindya Hapsari",
@@ -99,13 +99,13 @@ describe("App component", () => {
         salaryRange: "3.000 - 4.000",
       };
 
-      test("renders Summary component title", () => {
+      test("it should render Summary component title", () => {
         render(<Summary user={mockUser} />);
         const fieldElement = screen.getByText("Summary");
         expect(fieldElement).toBeInTheDocument();
       });
 
-      test("renders Summary component with user data", () => {
+      test("it should render Summary component with user data", () => {
         render(<Summary user={mockUser} />);
 
         const fullName = screen.getByText(`Full Name: ${mockUser.fullName}`);
