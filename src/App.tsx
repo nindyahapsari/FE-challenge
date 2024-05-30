@@ -65,7 +65,11 @@ function App() {
             const StepComponent = step.component;
             return (
               currentStep === index + 1 && (
-                <StepComponent user={user} setFormField={setFormField} />
+                <StepComponent
+                  key={index}
+                  user={user}
+                  setFormField={setFormField}
+                />
               )
             );
           })}
