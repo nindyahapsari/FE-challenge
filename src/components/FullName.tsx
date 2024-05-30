@@ -10,7 +10,7 @@ type FullNameProps = {
 function FullName({ formState, setFormField }: FullNameProps) {
   const [isFullnameTouched, setIsFullnameTouched] = useState(false);
 
-  const firstNameError = isFullnameTouched
+  const fullNameError = isFullnameTouched
     ? validateInput(formState.fullName, [
         { type: "required", value: true, message: "Full name is required" },
         { type: "maxLength", value: 20, message: "Full name is too long" },
@@ -34,7 +34,7 @@ function FullName({ formState, setFormField }: FullNameProps) {
           onChange={(e) => setFormField("fullName", e.target.value)}
           onBlur={() => setIsFullnameTouched(true)}
         />
-        {firstNameError && <p className="text-red-500">{firstNameError}</p>}
+        {fullNameError && <p className="text-red-500">{fullNameError}</p>}
       </div>
     </div>
   );
