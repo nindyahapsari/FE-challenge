@@ -21,7 +21,7 @@ function PhoneNumber({ user, setFormField }: PhoneNumberProps) {
         {
           type: "pattern",
           value: /^\d{10}$/,
-          message: "Phone number is not valid",
+          message: "Phone number should be 10 digits",
         },
       ]}
     />
