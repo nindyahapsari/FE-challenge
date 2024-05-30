@@ -1,7 +1,7 @@
 import React from "react";
 
-import { render, RenderResult, screen } from "@testing-library/react";
-import { ReactElement } from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, expect, vi } from "vitest";
 
 import App from "../App";
 import FullName from "../components/FullName";
@@ -21,7 +21,7 @@ describe("App component", () => {
     describe("FullName component", () => {
       test("it should renders FullName component with label text", () => {
         const mockUser = {
-          fullName: "John Doe",
+          fullName: "Ada Lovelace",
           email: "",
           phoneNumber: "",
           salaryRange: "",
@@ -29,6 +29,23 @@ describe("App component", () => {
         render(<FullName user={mockUser} setFormField={() => {}} />);
         const fieldElement = screen.getByText("Full Name");
         expect(fieldElement).toBeInTheDocument();
+      });
+
+      test("calls setFormField on input change", () => {
+        const mockUser = {
+          fullName: "",
+          email: "",
+          phoneNumber: "",
+          salaryRange: "",
+        };
+        const mockSetFormField = vi.fn();
+        const { getByPlaceholderText } = render(
+          <FullName user={mockUser} setFormField={mockSetFormField} />
+        );
+        const input = getByPlaceholderText("Enter your full name");
+        fireEvent.change(input, { target: { value: "Johnny" } });
+        expect(mockSetFormField).toHaveBeenCalledTimes(1);
+        expect(mockSetFormField).toHaveBeenCalledWith("fullName", "Johnny");
       });
     });
 
