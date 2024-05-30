@@ -1,4 +1,3 @@
-// src/components/ReusableInput.tsx
 import React, { useState } from "react";
 import { SetFormField } from "../App";
 import { validateInput, ValidationRule } from "../utils/ValidationRules";
@@ -38,7 +37,9 @@ function FormInput({
             type={type}
             id={id}
             placeholder={placeholderText}
-            className="border-2 border-gray-300 bg-transparent p-2 rounded-md mx-2 focus:border-blue-500 focus:outline-none"
+            className={` border-2 border-gray-300 bg-transparent p-2 rounded-md mx-2 focus:border-blue-500 focus:outline-none ${
+              error ? "border-red-500" : "border-gray-300"
+            }`}
             value={value}
             onChange={(e) => setFormField(id, e.target.value)}
             onBlur={() => setIsTouched(true)}
@@ -49,7 +50,7 @@ function FormInput({
             }`}
           />
         </div>
-        {error && <p className="text-red-500 m-2">{error}</p>}
+        {error && <p className="text-red-500 m-3">{error}</p>}
       </div>
     </div>
   );
