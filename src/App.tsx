@@ -9,14 +9,14 @@ import SalaryIndication from "./components/SalaryIndication";
 import Summary from "./components/Summary";
 import ProgressButtons from "./components/ProgressButtons";
 
-export type FormState = {
+export type UserState = {
   fullName: string;
   email: string;
   phoneNumber: string;
   salaryRange: string;
 };
 
-export type SetFormField = (field: keyof FormState, value: string) => void;
+export type SetFormField = (field: keyof UserState, value: string) => void;
 
 const formSteps = [
   { component: FullName, key: "fullName" },
@@ -27,7 +27,7 @@ const formSteps = [
 ];
 
 function App() {
-  const [formState, setFormState] = useState<FormState>({
+  const [user, setUser] = useState<UserState>({
     fullName: "",
     email: "",
     phoneNumber: "",
@@ -38,7 +38,7 @@ function App() {
   const totalSteps = formSteps.length;
 
   const setFormField: SetFormField = (field, value) => {
-    setFormState((prevState) => ({
+    setUser((prevState) => ({
       ...prevState,
       [field]: value,
     }));
@@ -65,10 +65,7 @@ function App() {
             const StepComponent = step.component;
             return (
               currentStep === index + 1 && (
-                <StepComponent
-                  formState={formState}
-                  setFormField={setFormField}
-                />
+                <StepComponent user={user} setFormField={setFormField} />
               )
             );
           })}
