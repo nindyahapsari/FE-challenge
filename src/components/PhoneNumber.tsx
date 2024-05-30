@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { FormState, SetFormField } from "../App";
+import { UserState, SetFormField } from "../App";
 import { validateInput } from "../utils/ValidationRules";
 
 type PhoneNumberProps = {
-  formState: FormState;
+  user: UserState;
   setFormField: SetFormField;
 };
 
-function PhoneNumber({ formState, setFormField }: PhoneNumberProps) {
+function PhoneNumber({ user, setFormField }: PhoneNumberProps) {
   const [isPhoneNumberTouched, setIsPhoneNumberTouched] = useState(false);
 
   const phoneNumberError = isPhoneNumberTouched
-    ? validateInput(formState.phoneNumber, [
+    ? validateInput(user.phoneNumber, [
         { type: "required", value: true, message: "Phone number is required" },
         {
           type: "pattern",
@@ -34,7 +34,7 @@ function PhoneNumber({ formState, setFormField }: PhoneNumberProps) {
           type="email"
           id="email"
           className="border-2 border-gray-300 bg-transparent p-2 rounded-md"
-          value={formState.phoneNumber}
+          value={user.phoneNumber}
           onChange={(e) => setFormField("phoneNumber", e.target.value)}
           onBlur={() => setIsPhoneNumberTouched(true)}
         />
