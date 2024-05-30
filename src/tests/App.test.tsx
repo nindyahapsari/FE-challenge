@@ -55,7 +55,7 @@ describe("App component", () => {
           salaryRange: "",
         };
         render(<PhoneNumber user={mockUser} setFormField={() => {}} />);
-        const fieldElement = screen.getByText("Phone number");
+        const fieldElement = screen.getByText("Phone Number");
         expect(fieldElement).toBeInTheDocument();
       });
     });
