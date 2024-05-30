@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { FormState, SetFormField } from "../App";
-import { validateInput } from "../utils/ValidationRules";
+import React from "react";
+import { UserState, SetFormField } from "../App";
 
 type SalaryIndicationProps = {
-  formState: FormState;
+  user: UserState;
   setFormField: SetFormField;
 };
 
@@ -15,7 +14,7 @@ const salaryRanges = [
   { id: "4000+", label: "Mehr als 4.000" },
 ];
 
-function SalaryIndication({ formState, setFormField }: SalaryIndicationProps) {
+function SalaryIndication({ user, setFormField }: SalaryIndicationProps) {
   function handleOptionChange(event: React.ChangeEvent<HTMLInputElement>) {
     setFormField("salaryRange", event.target.value);
   }
@@ -38,7 +37,7 @@ function SalaryIndication({ formState, setFormField }: SalaryIndicationProps) {
                 id={range.id}
                 name="salary"
                 value={range.id}
-                checked={formState.salaryRange === range.id}
+                checked={user.salaryRange === range.id}
                 onChange={handleOptionChange}
                 className="mr-2 w-5"
               />
