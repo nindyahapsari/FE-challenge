@@ -16,7 +16,7 @@ const salaryRanges = [
 ];
 
 function SalaryIndication({ formState, setFormField }: SalaryIndicationProps) {
-  function handleOptionChange(event) {
+  function handleOptionChange(event: React.ChangeEvent<HTMLInputElement>) {
     setFormField("salaryRange", event.target.value);
   }
 
