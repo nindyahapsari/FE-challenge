@@ -66,7 +66,7 @@ function App() {
             return (
               currentStep === index + 1 && (
                 <StepComponent
-                  key={index}
+                  key={step.key}
                   user={user}
                   setFormField={setFormField}
                 />
