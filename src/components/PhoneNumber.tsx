@@ -13,7 +13,7 @@ function PhoneNumber({ user, setFormField }: PhoneNumberProps) {
       id="phoneNumber"
       label="Phone Number"
       placeholderText="Enter your phone number"
-      type="text"
+      type="tel"
       value={user.phoneNumber}
       setFormField={setFormField}
       validationRules={[
