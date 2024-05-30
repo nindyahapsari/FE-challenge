@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { FormState, SetFormField } from "../App";
+import { UserState, SetFormField } from "../App";
 import { validateInput } from "../utils/ValidationRules";
 
 type FullNameProps = {
-  formState: FormState;
+  user: UserState;
   setFormField: SetFormField;
 };
 
-function FullName({ formState, setFormField }: FullNameProps) {
+function FullName({ user, setFormField }: FullNameProps) {
   const [isFullnameTouched, setIsFullnameTouched] = useState(false);
 
   const fullNameError = isFullnameTouched
-    ? validateInput(formState.fullName, [
+    ? validateInput(user.fullName, [
         { type: "required", value: true, message: "Full name is required" },
         { type: "maxLength", value: 20, message: "Full name is too long" },
       ])
@@ -30,7 +30,7 @@ function FullName({ formState, setFormField }: FullNameProps) {
           type="text"
           id="firstName"
           className="border-2 border-gray-300 bg-transparent p-2 rounded-md"
-          value={formState.fullName}
+          value={user.fullName}
           onChange={(e) => setFormField("fullName", e.target.value)}
           onBlur={() => setIsFullnameTouched(true)}
         />
