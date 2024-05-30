@@ -30,8 +30,9 @@ function SalaryIndication({ user, setFormField }: SalaryIndicationProps) {
         </label>
 
         <div className="px-10 space-y-5">
-          {salaryRanges.map((range) => (
+          {salaryRanges.map((range, index) => (
             <label
+              key={`salaryRange-${index}`}
               htmlFor={range.id}
               className="flex flex-row items-center justify-center text-3xl text-left"
             >
