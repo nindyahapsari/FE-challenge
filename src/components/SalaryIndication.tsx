@@ -20,18 +20,21 @@ function SalaryIndication({ user, setFormField }: SalaryIndicationProps) {
   }
 
   return (
-    <div className="flex flex-col items-start justify-center space-y-4">
-      <div className="flex flex-col">
+    <div className="flex flex-col justify-center space-y-4">
+      <div className="flex flex-col justify-center items-center">
         <label
           htmlFor="salaryIndication"
-          className="text-3xl my-10 font-bold text-center"
+          className="text-3xl my-14 font-bold text-center"
         >
           Salary range
         </label>
 
-        <div className="px-10">
+        <div className="px-10 space-y-5">
           {salaryRanges.map((range) => (
-            <div key={range.id} className="flex items-center my-5">
+            <label
+              htmlFor={range.id}
+              className="flex flex-row items-center justify-center text-3xl text-left"
+            >
               <input
                 type="radio"
                 id={range.id}
@@ -39,12 +42,11 @@ function SalaryIndication({ user, setFormField }: SalaryIndicationProps) {
                 value={range.id}
                 checked={user.salaryRange === range.id}
                 onChange={handleOptionChange}
-                className="mr-2 w-5"
+                className="mr-2 w-5 h-5 text-blue-600 bg-gray-800"
               />
-              <label htmlFor={range.id} className="text-3xl text-left">
-                {range.label}
-              </label>
-            </div>
+
+              <span>{range.label} </span>
+            </label>
           ))}
         </div>
       </div>
