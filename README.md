@@ -33,7 +33,7 @@ npm run dev
 
 ## Usage
 
-Open your browser and navigate to http://localhost:3000 to use the application.
+Open your browser and navigate to http://localhost:5173 to use the application.
 
 ## Architecture
 
