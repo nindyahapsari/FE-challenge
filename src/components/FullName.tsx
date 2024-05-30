@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { UserState, SetFormField } from "../App";
-import { validateInput } from "../utils/ValidationRules";
+
+import FormInput from "./FormInput";
 
 type FullNameProps = {
   user: UserState;
@@ -8,35 +9,19 @@ type FullNameProps = {
 };
 
 function FullName({ user, setFormField }: FullNameProps) {
-  const [isFullnameTouched, setIsFullnameTouched] = useState(false);
-
-  const fullNameError = isFullnameTouched
-    ? validateInput(user.fullName, [
+  return (
+    <FormInput
+      id="fullName"
+      label="Full Name"
+      placeholderText="Enter your full name"
+      type="text"
+      value={user.fullName}
+      setFormField={setFormField}
+      validationRules={[
         { type: "required", value: true, message: "Full name is required" },
         { type: "maxLength", value: 20, message: "Full name is too long" },
-      ])
-    : "";
-
-  return (
-    <div className="flex flex-col space-y-4">
-      <div className="flex flex-col">
-        <label
-          htmlFor="firstName"
-          className="text-3xl my-10 font-bold text-center"
-        >
-          Full Name
-        </label>
-        <input
-          type="text"
-          id="firstName"
-          className="border-2 border-gray-300 bg-transparent p-2 rounded-md"
-          value={user.fullName}
-          onChange={(e) => setFormField("fullName", e.target.value)}
-          onBlur={() => setIsFullnameTouched(true)}
-        />
-        {fullNameError && <p className="text-red-500">{fullNameError}</p>}
-      </div>
-    </div>
+      ]}
+    />
   );
 }
 
