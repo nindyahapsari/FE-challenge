@@ -20,6 +20,7 @@ function ProgressButtons({
   return (
     <div className="flex-1 flex flex-row items-center p-4 justify-between">
       <button
+        aria-label="previous"
         className={` my-3 rounded-full border-2 p-3 transform transition-transform duration-500 hover:scale-105 ${
           currentStep === 1 ? "border-gray-500" : ""
         }`}
@@ -41,6 +42,7 @@ function ProgressButtons({
         </div>
       </div>
       <button
+        aria-label="next"
         className={`my-3 rounded-full border-2 p-3 transform transition-transform duration-500 hover:scale-105 ${
           currentStep === totalSteps ? "border-gray-500" : ""
         }`}

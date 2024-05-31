@@ -9,6 +9,7 @@ import Email from "../components/Email";
 import PhoneNumber from "../components/PhoneNumber";
 import SalaryIndication from "../components/SalaryIndication";
 import Summary from "../components/Summary";
+import ProgressButtons from "../components/ProgressButtons";
 
 describe("App component", () => {
   test("it should render dummy logo", () => {
@@ -18,6 +19,72 @@ describe("App component", () => {
   });
 
   describe("Form Components", () => {
+    describe("ProgressButtons component", () => {
+      test("it should render ProgressButtons component with next button", () => {
+        const mockCurrentStep = 1;
+        const mockTotalSteps = 5;
+        render(
+          <ProgressButtons
+            currentStep={mockCurrentStep}
+            totalSteps={mockTotalSteps}
+            nextStep={() => {}}
+            prevStep={() => {}}
+          />
+        );
+        const nextButton = screen.getByRole("button", { name: "next" });
+        expect(nextButton).toBeInTheDocument();
+      });
+
+      test("it should call nextStep on next button click", () => {
+        const mockCurrentStep = 1;
+        const mockTotalSteps = 5;
+        const mockNextStep = vi.fn();
+        render(
+          <ProgressButtons
+            currentStep={mockCurrentStep}
+            totalSteps={mockTotalSteps}
+            nextStep={mockNextStep}
+            prevStep={() => {}}
+          />
+        );
+        const nextButton = screen.getByRole("button", { name: "next" });
+        fireEvent.click(nextButton);
+        expect(mockNextStep).toHaveBeenCalledTimes(1);
+      });
+
+      test("it should render ProgressButtons component with previous button", () => {
+        const mockCurrentStep = 2;
+        const mockTotalSteps = 5;
+        render(
+          <ProgressButtons
+            currentStep={mockCurrentStep}
+            totalSteps={mockTotalSteps}
+            nextStep={() => {}}
+            prevStep={() => {}}
+          />
+        );
+        const prevButton = screen.getByRole("button", { name: "previous" });
+        expect(prevButton).toBeInTheDocument();
+      });
+
+      test("it should call prevStep on previous button click", () => {
+        const mockCurrentStep = 2;
+        const mockTotalSteps = 5;
+        const mockPrevStep = vi.fn();
+        render(
+          <ProgressButtons
+            currentStep={mockCurrentStep}
+            totalSteps={mockTotalSteps}
+            nextStep={() => {}}
+            prevStep={mockPrevStep}
+          />
+        );
+        const prevButton = screen.getByRole("button", { name: "previous" });
+        fireEvent.click(prevButton);
+        expect(mockPrevStep).toHaveBeenCalledTimes(1);
+      });
+    });
+
     describe("FullName component", () => {
       test("it should render FullName component with label text", () => {
         const mockUser = {
